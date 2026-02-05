@@ -10,6 +10,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Formulario = ({ modalVisible, nuevaCitaHandler }: any) => {
   const [selectedSpecies, setSelectedSpecies] = useState();
@@ -88,6 +89,7 @@ const Formulario = ({ modalVisible, nuevaCitaHandler }: any) => {
               placeholder="Sintomas"
               value={sintomas}
               onChangeText={setSintomas}
+              multiline={true}
             />
           </View>
 
