@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { Modal, Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Formulario from "./components/Formulario";
 
 export default function Index() {
   const [modalVisible, setModalVisible] = useState(false);
-  const newCitaHandler = () => {
-    console.log("Nueva Cita");
-  };
-  const modalHandler = () => {
-    setModalVisible(!modalVisible);
+
+  const nuevaCitaHandler = () => {
+    console.log("Diste click");
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -16,12 +15,16 @@ export default function Index() {
         Administrador de Citas {""}
         <Text style={styles.tituloBold}>Veterinaria</Text>
       </Text>
-      <Pressable style={styles.btnNewCita} onPressIn={modalHandler}>
-        <Text style={styles.btnText}>Ir a citas</Text>
+      <Pressable
+        style={styles.btnNewCita}
+        onPressIn={() => setModalVisible(true)}
+      >
+        <Text style={styles.btnText}>Nueva Cita</Text>
       </Pressable>
-      <Modal animationType="slide" visible={modalVisible} onRequestClose={modalHandler}>
-        <Text>Desde el modal</Text>
-      </Modal>
+      <Formulario
+        modalVisible={modalVisible}
+        nuevaCitaHandler={() => setModalVisible(false)}
+      />
     </SafeAreaView>
   );
 }
