@@ -13,6 +13,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const Formulario = ({ modalVisible, nuevaCitaHandler }: any) => {
   const [selectedSpecies, setSelectedSpecies] = useState();
+  const [paciente, setPaciente] = useState("hook");
+  const [propietario, setPropietario] = useState("");
+  const [telefono, setTelefono] = useState("");
+  const [email, setEmail] = useState("");
+  const [sintomas, setSintomas] = useState("");
   return (
     <Modal animationType="slide" visible={modalVisible}>
       <SafeAreaView style={styles.contenido}>
@@ -41,6 +46,8 @@ const Formulario = ({ modalVisible, nuevaCitaHandler }: any) => {
             <TextInput
               style={styles.inputText}
               placeholder="Nombre del paciente"
+              value={paciente}
+              onChangeText={setPaciente}
             />
           </View>
 
@@ -49,6 +56,8 @@ const Formulario = ({ modalVisible, nuevaCitaHandler }: any) => {
             <TextInput
               style={styles.inputText}
               placeholder="Nombre del propietario"
+              value={propietario}
+              onChangeText={setPropietario}
             />
           </View>
           <View style={styles.input}>
@@ -57,6 +66,9 @@ const Formulario = ({ modalVisible, nuevaCitaHandler }: any) => {
               style={styles.inputText}
               placeholder="Telefono del propietario"
               keyboardType="numeric"
+              value={telefono}
+              onChangeText={setTelefono}
+              maxLength={10}
             />
           </View>
           <View style={styles.input}>
@@ -65,11 +77,18 @@ const Formulario = ({ modalVisible, nuevaCitaHandler }: any) => {
               style={styles.inputText}
               placeholder="Email del propietario"
               keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
             />
           </View>
           <View style={styles.input}>
-            <Text style={styles.label}>Sintomas del Paciente:</Text>
-            <TextInput style={styles.inputText} placeholder="Sintomas" />
+            <Text style={[styles.label, styles.labelSintomas]}>Sintomas del Paciente:</Text>
+            <TextInput
+              style={styles.inputText}
+              placeholder="Sintomas"
+              value={sintomas}
+              onChangeText={setSintomas}
+            />
           </View>
 
           <Pressable>
@@ -119,6 +138,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     marginHorizontal: 15,
+    fontWeight: "600",
   },
   inputText: {
     backgroundColor: "#fff",
@@ -148,4 +168,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     elevation: 10,
   },
+  labelSintomas: {
+    height: 100,
+  }
 });
