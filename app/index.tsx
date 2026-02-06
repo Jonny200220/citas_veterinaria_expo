@@ -5,10 +5,8 @@ import Formulario from "./components/Formulario";
 
 export default function Index() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [pacientes, setPacientes] = useState([]);
 
-  const nuevaCitaHandler = () => {
-    console.log("Diste click");
-  };
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.titulo}>
@@ -21,9 +19,16 @@ export default function Index() {
       >
         <Text style={styles.btnText}>Nueva Cita</Text>
       </Pressable>
+
+      {pacientes.length === 0 ? (
+        <Text style={styles.titulo}>No hay citas Agregadas</Text>
+      ) : <Text>Si Hay pacientes</Text>}
+
       <Formulario
         modalVisible={modalVisible}
-        nuevaCitaHandler={() => setModalVisible(false)}
+        setModalVisible={setModalVisible}
+        pacientes={pacientes}
+        setPacientes={setPacientes}
       />
     </SafeAreaView>
   );
