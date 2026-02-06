@@ -25,12 +25,13 @@ export default function Index() {
         <Text style={styles.noPacientes}>No hay citas Agregadas</Text>
       ) : (
         <FlatList
+          style={{marginTop: 30, marginHorizontal: 30}}
           data={pacientes}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
             console.log(item);
             return (
-              <Paciente />
+              <Paciente item={item}/>
             )
           }}
         />
