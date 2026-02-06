@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Formulario from "./components/Formulario";
+import Paciente from "./components/Paciente";
 
 export default function Index() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [pacientes, setPacientes] = useState([]);
+  const [pacientes, setPacientes] = useState<any[]>([]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -21,8 +22,19 @@ export default function Index() {
       </Pressable>
 
       {pacientes.length === 0 ? (
-        <Text style={styles.titulo}>No hay citas Agregadas</Text>
-      ) : <Text>Si Hay pacientes</Text>}
+        <Text style={styles.noPacientes}>No hay citas Agregadas</Text>
+      ) : (
+        <FlatList
+          data={pacientes}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => {
+            console.log(item);
+            return (
+              <Paciente />
+            )
+          }}
+        />
+      )}
 
       <Formulario
         modalVisible={modalVisible}
@@ -63,4 +75,11 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     textTransform: "uppercase",
   },
+  noPacientes: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "600",
+    color: "#374151",
+  },
 });
+

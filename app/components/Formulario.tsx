@@ -17,6 +17,7 @@ import DateTimePicker, {
 } from "react-native-ui-datepicker";
 
 interface NuevoPaciente {
+  id: number;
   paciente: string;
   propietario: string;
   telefono: string;
@@ -54,6 +55,7 @@ const Formulario = ({
       return;
     } else {
       const nuevoPaciente: NuevoPaciente = {
+        id: Date.now(),
         paciente,
         propietario,
         telefono,
@@ -64,8 +66,7 @@ const Formulario = ({
 
       setPacientes([...pacientes, nuevoPaciente]);
       setModalVisible(false);
-      console.log("Cita creada...");
-      console.log(nuevoPaciente);
+
       setPaciente("");
       setPropietario("");
       setTelefono("");
